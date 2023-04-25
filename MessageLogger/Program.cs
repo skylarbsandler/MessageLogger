@@ -2,12 +2,14 @@
 using MessageLogger;
 using System;
 
-List<User> users = new List<User>();
-var user1 = new User("Skylar", "ssandler");
-user1.Messages.Add("Hello");
+//List<User> users = new List<User>();
+//var user1 = new User("Skylar", "ssandler");
+//var helloMessage = new Message("hello", DateTime.Now);
+//user1.Messages.Add(helloMessage);
 
-var user2 = new User("Scott", "sganz");
-user2.Messages.Add("World");
+//var user2 = new User("Scott", "sganz");
+//var happyBirthday = new Message("happy birthday", DateTime.Now);
+//user2.Messages.Add(happyBirthday);
 
 
 Console.WriteLine("Welcome to Message Logger!");
@@ -23,8 +25,9 @@ Console.WriteLine("To log out of your user profile, enter 'log out'. To quit the
 
 Console.Write("Add a message: ");
 
-var message = new Message(Console.ReadLine(), DateTime.Now);
-string messageString = message.Content;
+var message1 = new Message(Console.ReadLine(), DateTime.Now);
+user1.AddMessage(message1);
+string messageString = message1.Content;
 
 while (!messageString.Equals("quit") || !messageString.Equals("log out"))
 {
@@ -32,10 +35,10 @@ while (!messageString.Equals("quit") || !messageString.Equals("log out"))
     {
         Console.WriteLine($"{name} {message.CreatedAt.ToShortTimeString()}: {message.Content}");
     }
-    messageCounter++;
+    user1.MessageCounter++;
     Console.Write("Add a message: ");
-    message = new Message(Console.ReadLine(), DateTime.Now);
-    messageString = message.Content;
+    message2 = new Message(Console.ReadLine(), DateTime.Now);
+    messageString = message2.Content;
 }
 
 while (messageString == "log out")
@@ -60,7 +63,7 @@ while (messageString == "log out")
 
 while (messageString == "quit")
 {
-    messageCounter--;
+    user1.MessageCounter--;
     Console.WriteLine("Thanks for using Message Logger!");
     Console.WriteLine($"{user1} wrote {user1.MessageCounter}");
     Console.WriteLine($"{user2} wrote {user2.MessageCounter}");
