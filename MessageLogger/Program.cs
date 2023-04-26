@@ -41,19 +41,19 @@ while (activeUser == true)
     {
         activeUser = false;
         {
-            Console.WriteLine("Would you like to log in a 'new' or 'existing' user?");
-            var userInput = Console.ReadLine();
+            Console.Write("\nWould you like to log in a 'new' or 'existing' user? ");
+            userMessage.Content = Console.ReadLine();
 
-            if (userInput == "existing")
+            if (userMessage.Content == "existing")
             {
                 Console.Write("What is your username? ");
                 userName = Console.ReadLine();
                 user1 = activeUsers.Find(user => user.Username == userName);
                 activeUser = true;
             }
-            if (userInput == "new")
+            if (userMessage.Content == "new")
             {
-                Console.WriteLine("Let's create a user profile for you.");
+                Console.WriteLine("\nLet's create a user profile for you.");
                 Console.Write("What is your name? ");
                 name = Console.ReadLine();
                 Console.Write("What is your username? (one word, no spaces!) ");
@@ -61,6 +61,9 @@ while (activeUser == true)
                 user1 = new User(name, userName);
                 activeUsers.Add(user1);
                 activeUser = true;
+                Console.WriteLine("\nTo log out of your user profile, enter 'log out'. To quit the application, enter 'quit'");
+                Console.Write("Add a message: ");
+                userMessage = new Message(Console.ReadLine(), DateTime.Now);
             }
         }
     }
