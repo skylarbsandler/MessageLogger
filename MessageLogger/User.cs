@@ -11,6 +11,7 @@ namespace MessageLogger
         public string Name;
         public string Username;
         public List<Message> Messages;
+        public int MessageCount;
 
         public User(string name, string username)
         {
@@ -35,6 +36,11 @@ namespace MessageLogger
             {
                 Console.WriteLine(message);
             }
+        }
+
+        public void AddMessage(Message message)
+        {
+            Messages.Add(message);
         }
     }
 }
