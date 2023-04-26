@@ -3,7 +3,7 @@ using MessageLogger;
 using System;
 
 List<User> activeUsers = new List<User>();
-bool activeUser = false;
+User activeUser = null;
 
 Console.WriteLine("Welcome to Message Logger!\n");
 
@@ -14,18 +14,21 @@ Console.Write("What is your username? (one word, no spaces!) ");
 var userName = Console.ReadLine();
 var user1 = new User(name, userName);
 activeUsers.Add(user1);
-activeUser = true;
+activeUser = user1;
 
 Console.WriteLine("");
 Console.WriteLine("To log out of your user profile, enter 'log out'. To quit the application, enter 'quit'");
 
-Console.Write("Add a message: ");
+//Console.Write("Add a message: ");
 
-var userMessage = new Message(Console.ReadLine(), DateTime.Now);
-user1.AddMessage(userMessage);
+//var userMessage = new Message(Console.ReadLine(), DateTime.Now);
+//user1.AddMessage(userMessage);
 
-while (activeUser == true)
+while (true)
 {
+    Console.Write("Add a message: ");
+    var userMessage = new Message(Console.ReadLine(), DateTime.Now);
+
     if (userMessage.Content == "quit")
     {
         Console.WriteLine("");
@@ -39,17 +42,14 @@ while (activeUser == true)
 
     if (userMessage.Content == "log out")
     {
-        activeUser = false;
-        {
-            Console.WriteLine("Would you like to log in a 'new' or 'existing' user?");
-            var userInput = Console.ReadLine();
+        Console.WriteLine("Would you like to log in a 'new' or 'existing' user?");
+        var userInput = Console.ReadLine();
 
             if (userInput == "existing")
             {
                 Console.Write("What is your username? ");
                 userName = Console.ReadLine();
-                user1 = activeUsers.Find(user => user.Username == userName);
-                activeUser = true;
+                activeUser = activeUsers.Find(user => user.Username == userName);
             }
             if (userInput == "new")
             {
@@ -58,28 +58,19 @@ while (activeUser == true)
                 name = Console.ReadLine();
                 Console.Write("What is your username? (one word, no spaces!) ");
                 userName = Console.ReadLine();
-                user1 = new User(name, userName);
-                activeUsers.Add(user1);
-                activeUser = true;
+                activeUser = new User(name, userName);
+                activeUsers.Add(activeUser);
             }
-        }
     }
 
-    if (userMessage.Content != "log out" || userMessage.Content != "quit")
+    else if (activeUser != null)
     {
-       foreach (var message in user1.Messages)
+       foreach (var message in activeUser.Messages)
        {
           Console.WriteLine($"{user1.Name} {message.CreatedAt.ToShortTimeString()}: {message.Content}");
        }
 
-        Console.Write("Add a message: ");
-        userMessage = new Message(Console.ReadLine(), DateTime.Now);
-
-        if (userMessage.Content != "log out" || userMessage.Content != "quit")
-        {
-            user1.AddMessage(userMessage);
-            Console.WriteLine("");
-        }
+        activeUser.AddMessage(userMessage);
     }
  }
 
