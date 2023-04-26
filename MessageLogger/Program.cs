@@ -27,8 +27,6 @@ user1.AddMessage(userMessage);
 
 while (true)
 {
-    //only runs if first message input is "log out"
-    //need to check if most recent/last message contains "log out"
     if (userMessage.Content == "quit")
     {
         Console.WriteLine("");
@@ -80,15 +78,6 @@ while (true)
           Console.WriteLine("");
     }
  }
-
-    //only runs if first message input is "quit"
-    //need to check if most recent/last message contains "quit"
-    //Console.WriteLine("");
-    //Console.WriteLine("Thanks for using Message Logger!");
-    //foreach (var user in activeUsers)
-    //{
-    //    Console.WriteLine($"{user.Name} wrote {user.Messages.Count} messages.");
-    //}
 
 
 
