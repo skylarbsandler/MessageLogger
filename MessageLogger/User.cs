@@ -11,7 +11,6 @@ namespace MessageLogger
         public string Name;
         public string Username;
         public List<Message> Messages;
-        public int MessageCount;
 
         public User(string name, string username)
         {
@@ -20,27 +19,27 @@ namespace MessageLogger
             Messages = new List<Message>();
         }
 
-        public void CreateUser()
-        {
-            Console.WriteLine("Let's create a user profile for you.");
-            Console.WriteLine("What is your name?");
-            var name = Console.ReadLine();
-            Console.Write("What is your username? (one word, no spaces!) ");
-            var userName = Console.ReadLine();
-            var user1 = new User(name, userName);
-        }
-
-        public void LogIn(User user)
-        {
-            foreach(var message in Messages)
-            {
-                Console.WriteLine(message);
-            }
-        }
-
         public void AddMessage(Message message)
         {
             Messages.Add(message);
         }
+
+        //public void CreateUser()
+        //{
+        //    Console.WriteLine("Let's create a user profile for you.");
+        //    Console.WriteLine("What is your name?");
+        //    var name = Console.ReadLine();
+        //    Console.Write("What is your username? (one word, no spaces!) ");
+        //    var userName = Console.ReadLine();
+        //    var user1 = new User(name, userName);
+        //}
+
+        //public void LogIn(User user)
+        //{
+        //    foreach (var message in Messages)
+        //    {
+        //        Console.WriteLine(message);
+        //    }
+        //}
     }
 }

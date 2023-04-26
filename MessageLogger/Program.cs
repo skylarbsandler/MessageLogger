@@ -5,8 +5,7 @@ using System;
 List<User> activeUsers = new List<User>();
 bool activeUser = false;
 
-Console.WriteLine("Welcome to Message Logger!");
-Console.WriteLine("");
+Console.WriteLine("Welcome to Message Logger!\n");
 
 Console.WriteLine("Let's create a user profile for you.");
 Console.Write("What is your name? ");
@@ -25,7 +24,7 @@ Console.Write("Add a message: ");
 var userMessage = new Message(Console.ReadLine(), DateTime.Now);
 user1.AddMessage(userMessage);
 
-while (true)
+while (activeUser == true)
 {
     if (userMessage.Content == "quit")
     {
@@ -49,7 +48,7 @@ while (true)
             {
                 Console.Write("What is your username? ");
                 userName = Console.ReadLine();
-                bool containsuserName = activeUsers.Any(user => user.Username == userName);
+                user1 = activeUsers.Find(user => user.Username == userName);
                 activeUser = true;
             }
             if (userInput == "new")
@@ -72,10 +71,15 @@ while (true)
        {
           Console.WriteLine($"{user1.Name} {message.CreatedAt.ToShortTimeString()}: {message.Content}");
        }
-          Console.Write("Add a message: ");
-          userMessage = new Message(Console.ReadLine(), DateTime.Now);
-          user1.AddMessage(userMessage);
-          Console.WriteLine("");
+
+        Console.Write("Add a message: ");
+        userMessage = new Message(Console.ReadLine(), DateTime.Now);
+
+        if (userMessage.Content != "log out" || userMessage.Content != "quit")
+        {
+            user1.AddMessage(userMessage);
+            Console.WriteLine("");
+        }
     }
  }
 
