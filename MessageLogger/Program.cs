@@ -75,8 +75,8 @@ while (true)
           Console.WriteLine($"{user1.Name} {message.CreatedAt.ToShortTimeString()}: {message.Content}");
        }
           Console.Write("Add a message: ");
-          var newMessage = new Message(Console.ReadLine(), DateTime.Now);
-          user1.AddMessage(newMessage);
+          userMessage = new Message(Console.ReadLine(), DateTime.Now);
+          user1.AddMessage(userMessage);
           Console.WriteLine("");
     }
  }
